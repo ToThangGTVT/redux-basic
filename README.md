@@ -1,167 +1,116 @@
-**Bắt đầu: Chia cấu trúc project thành các thư mục nhỏ: &#39;store, reducer, store&#39; và trong mỗi thư mục nên có một fie index.js**
-
-**Cài đặt:** npm i react-redux –save | npm i redux --save
-
+Bắt đầu: Chia cấu trúc project thành các thư mục nhỏ: ‘store, reducer, store’ và trong mỗi thư mục nên có một fie index.js
+Cài đặt: npm i react-redux –save | npm i redux --save
+```sh
 ReactDOM.render(
-
-  \&lt;Provider store={store}\&gt;
-
-    \&lt;App /\&gt;
-
-  \&lt;/Provider\&gt;,
-
-  document.getElementById(&#39;root&#39;)
-
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
+```
 
 Và import Provider và store:
+```sh
+import { Provider } from 'react-redux'
+import store from './store/index'
+```
 
-import { Provider } from &#39;react-redux&#39;
+Trong thư mục store: store là một nơi để chứa toàn bộ state của ứng dụng. Nó nhận đầu vào là một reducer. Reducer đưa state vào trong store để store quản lý
 
-import store from &#39;./store/index&#39;
-
-**Trong thư mục store:** store là một nơi để chứa toàn bộ state của ứng dụng. Nó nhận đầu vào là một reducer. Reducer đưa state vào trong store để store quản lý
-
-import { createStore } from &quot;redux&quot;;
-
-import reducer from &quot;../reduces&quot;;
+```
+import { createStore } from "redux";
+import reducer from "../reduces";
 
 export const store = createStore(reducer);
-
 export default store;
 
-**Trong thư mục reducer:** phần này có tác dụng nhận action và trả về state tương ứng với action đã khai báo (chỉ tạo ra bản sao của state chứ ko được sửa trực tiếp giá trị của state)
-
+Trong thư mục reducer: phần này có tác dụng nhận action và trả về state tương ứng với action đã khai báo (chỉ tạo ra bản sao của state chứ ko được sửa trực tiếp giá trị của state)
 export default function reducer(state = [], action) {
-
   return [
-
     ...state,
-
     {
-
       name: action.tech
-
     }
-
   ]
-
 }
+```
+Khai báo 1 action cơ bản: action nên có 1 trường type để reducer nhận ra và xử lý state tương ứng với action
 
-**Khai báo 1 action cơ bản:** action nên có 1 trường type để reducer nhận ra và xử lý state tương ứng với action
-
-export const addClick = tech =\&gt; ({
-
-  type: &#39;ADD\_TODO&#39;,
-
+```
+export const addClick = tech => ({
+  type: 'ADD_TODO',
   tech
-
 })
+```
 
-**Bắt đầu sử dụng redux:**
-
-Đây là button có tác dụng đưa value từ text box vào store để redux quản lý. _Connect là hàm có chức năng kết nối component với redux để value của text có thể truyền vào store và nhận state mới từ redux nếu có sự thay đổi từ store để render giá trị mới vào component_
-
-import React, { Component } from &#39;react&#39;;
-
-import { store } from &#39;../store/index&#39;
-
-import { addClick } from &#39;../action&#39;
-
-import { connect } from &#39;react-redux&#39;;
+Bắt đầu sử dụng redux:
+Đây là button có tác dụng đưa value từ text box vào store để redux quản lý. Connect là hàm có chức năng kết nối component với redux để value của text có thể truyền vào store và nhận state mới từ redux nếu có sự thay đổi từ store để render giá trị mới vào component
+```
+import React, { Component } from 'react';
+import { store } from '../store/index'
+import { addClick } from '../action'
+import { connect } from 'react-redux';
 
 class Button extends Component {
 
   constructor(props) {
-
     super(props)
-
     this.myRef = React.createRef()
-
   }
 
-  handleClick = () =\&gt; {
-
+  handleClick = () => {
     this.props.dispathButton(this.myRef.value)
-
   }
 
   render() {
-
     return (
-
-      \&lt;div\&gt;
-
-        \&lt;input ref={(input) =\&gt; { this.myRef = input }}\&gt;\&lt;/input\&gt;
-
-        \&lt;button onClick={this.handleClick}\&gt;Add\&lt;/button\&gt;
-
-      \&lt;/div\&gt;
-
+      <div>
+        <input ref={(input) => { this.myRef = input }}></input>
+        <button onClick={this.handleClick}>Add</button>
+      </div>
     )
-
   }
-
 }
 
-const mapDispatchToProps = () =\&gt; {
-
+const mapDispatchToProps = () => {
   return {
-
-    dispathButton: (val) =\&gt; { store.dispatch(addClick(val)) }
-
+    dispathButton: (val) => { store.dispatch(addClick(val)) }
   }
-
 }
 
 export default connect(mapDispatchToProps)(Button);
+```
+
 
 Và ở Component khác ta sẽ nhận state mới khi mà store có sự thay đổi:
 
-import React, { Component } from &#39;react&#39;;
-
-import { connect } from &#39;react-redux&#39;;
+```
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class List extends Component {
 
   render() {
-
     const { item } = this.props
-
-    if (typeof item === &#39;undefined&#39;) {
-
-      return (\&lt;div\&gt;\&lt;/div\&gt;)
-
+    if (typeof item === 'undefined') {
+      return (<div></div>)
     } else {
-
       return (
-
-        \&lt;div\&gt;
-
+        <div>
           {
-
-            item.map(el =\&gt; \&lt;li\&gt;{el.name}\&lt;/li\&gt;)
-
+            item.map(el => <li>{el.name}</li>)
           }
-
-        \&lt;/div\&gt;
-
+        </div>
       )
-
     }
-
   }
-
 }
 
-const mapStateToProps = (state) =\&gt; {
-
+const mapStateToProps = (state) => {
   return {
-
     item: state
-
   }
-
 }
 
 export default connect(mapStateToProps)(List)
+```
