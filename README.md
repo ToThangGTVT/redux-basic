@@ -26,8 +26,10 @@ import reducer from "../reduces";
 
 export const store = createStore(reducer);
 export default store;
+```
 
 Trong thư mục reducer: phần này có tác dụng nhận action và trả về state tương ứng với action đã khai báo (chỉ tạo ra bản sao của state chứ ko được sửa trực tiếp giá trị của state)
+```
 export default function reducer(state = [], action) {
   return [
     ...state,
