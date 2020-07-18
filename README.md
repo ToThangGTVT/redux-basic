@@ -1,4 +1,4 @@
-**Bắt đầu:** Chia cấu trúc project thành các thư mục nhỏ: ‘store, reducer, store’ và trong mỗi thư mục nên có một fie index.js
+**Bắt đầu:** Chia cấu trúc project thành các thư mục nhỏ: ‘**store, reducer, action**’ và trong mỗi thư mục nên có một fie index.js
 **Cài đặt:** *npm i react-redux –save | npm i redux --save*
 ```sh
 ReactDOM.render(
