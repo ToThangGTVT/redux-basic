@@ -125,3 +125,11 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(List)
 ```
 
+**Lưu ý:**
+
+```
+export default connect(mapStateToProps, mapDispatchToProps)(Paging)
+```
+
+**<u>mapStateToProps</u>** và **mapDispatchToProps** phải đúng thứ tự
+
