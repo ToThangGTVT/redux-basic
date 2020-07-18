@@ -1,5 +1,5 @@
-Bắt đầu: Chia cấu trúc project thành các thư mục nhỏ: ‘store, reducer, store’ và trong mỗi thư mục nên có một fie index.js
-Cài đặt: npm i react-redux –save | npm i redux --save
+**Bắt đầu:** Chia cấu trúc project thành các thư mục nhỏ: ‘store, reducer, store’ và trong mỗi thư mục nên có một fie index.js
+**Cài đặt:** *npm i react-redux –save | npm i redux --save*
 ```sh
 ReactDOM.render(
   <Provider store={store}>
@@ -15,7 +15,10 @@ import { Provider } from 'react-redux'
 import store from './store/index'
 ```
 
-Trong thư mục store: store là một nơi để chứa toàn bộ state của ứng dụng. Nó nhận đầu vào là một reducer. Reducer đưa state vào trong store để store quản lý
+**Trong thư mục store:** 
+
+> store là một nơi để chứa toàn bộ state của ứng dụng. Nó nhận đầu vào  
+> là một reducer. Reducer đưa state vào trong store để store quản lý
 
 ```
 import { createStore } from "redux";
@@ -34,7 +37,7 @@ export default function reducer(state = [], action) {
   ]
 }
 ```
-Khai báo 1 action cơ bản: action nên có 1 trường type để reducer nhận ra và xử lý state tương ứng với action
+**Khai báo 1 action cơ bản:** action nên có 1 trường type để reducer nhận ra và xử lý state tương ứng với action
 
 ```
 export const addClick = tech => ({
@@ -43,8 +46,13 @@ export const addClick = tech => ({
 })
 ```
 
-Bắt đầu sử dụng redux:
-Đây là button có tác dụng đưa value từ text box vào store để redux quản lý. Connect là hàm có chức năng kết nối component với redux để value của text có thể truyền vào store và nhận state mới từ redux nếu có sự thay đổi từ store để render giá trị mới vào component
+**Bắt đầu sử dụng redux:**
+Đây là button có tác dụng đưa value từ text box vào store để redux quản lý. 
+
+> Connect là hàm có chức năng kết nối component với redux để value của
+> text có thể truyền vào store và nhận state mới từ redux nếu có sự thay
+> đổi từ store để render giá trị mới vào component
+
 ```
 import React, { Component } from 'react';
 import { store } from '../store/index'
@@ -114,3 +122,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(List)
 ```
+
