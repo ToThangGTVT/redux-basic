@@ -1,6 +1,8 @@
 **Bắt đầu:** Chia cấu trúc project thành các thư mục nhỏ: ‘**store, reducer, action**’ và trong mỗi thư mục nên có một fie index.js
 **Cài đặt:** *npm i react-redux –save | npm i redux --save*
+
 trong trường hợp này ta đã sử dụng context để đặt store là globle data cho toàn ứng dụng
+
 ```react
 ReactDOM.render(
   <Provider store={store}>
