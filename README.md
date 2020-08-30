@@ -138,3 +138,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Paging)
 ```
 
 **<u>mapStateToProps</u>** và **mapDispatchToProps** phải đúng thứ tự
+,,,,
