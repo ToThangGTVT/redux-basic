@@ -3,7 +3,7 @@
 
 trong trường hợp này ta đã sử dụng context để đặt store là globle data cho toàn ứng dụng
 
-```react
+```jsx
 ReactDOM.render(
   <Provider store={store}>
     <App />
@@ -14,7 +14,7 @@ ReactDOM.render(
 
 Và import Provider và store:
 
-```react
+```jsx
 import { Provider } from 'react-redux'
 import store from './store/index'
 ```
@@ -34,7 +34,7 @@ export default store;
 
 Trong thư mục reducer: phần này có tác dụng nhận action và trả về state tương ứng với action đã khai báo (chỉ tạo ra bản sao của state chứ ko được sửa trực tiếp giá trị của state)
 
-```react
+```jsx
 export default function reducer(state = [], action) {
   return [
     ...state,
@@ -47,7 +47,7 @@ export default function reducer(state = [], action) {
 
 **Khai báo 1 action cơ bản:** action nên có 1 trường type để reducer nhận ra và xử lý state tương ứng với action
 
-```react
+```jsx
 export const addClick = tech => ({
   type: 'ADD_TODO',
   tech
@@ -61,7 +61,7 @@ export const addClick = tech => ({
 > text có thể truyền vào store và nhận state mới từ redux nếu có sự thay
 > đổi từ store để render giá trị mới vào component
 
-```react
+```jsx
 import React, { Component } from 'react';
 import { store } from '../store/index'
 import { addClick } from '../action'
@@ -100,7 +100,7 @@ export default connect(mapDispatchToProps)(Button);
 
 Và ở Component khác ta sẽ nhận state mới khi mà store có sự thay đổi:
 
-```react
+```jsx
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -133,7 +133,7 @@ export default connect(mapStateToProps)(List)
 
 **Lưu ý:**
 
-```react
+```jsx
 export default connect(mapStateToProps, mapDispatchToProps)(Paging)
 ```
 
