@@ -24,7 +24,7 @@ import store from './store/index'
 > store là một nơi để chứa toàn bộ state của ứng dụng. Nó nhận đầu vào  
 > là một reducer. Reducer đưa state vào trong store để store quản lý
 
-```react
+```jsx
 import { createStore } from "redux";
 import reducer from "../reduces";
 
